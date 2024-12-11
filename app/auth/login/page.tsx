@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { signIn, useSession } from 'next-auth/react'
-import { redirect, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 export default function SignIn() {
   const router = useRouter()
@@ -15,8 +15,7 @@ export default function SignIn() {
   const { data: session, status } = useSession()
 
   if (status === 'authenticated') {
-    redirect('/dashboard')
-    return null
+    router.push('/dashboard')
   }
 
   const handleCredentialsSubmit = async (e: React.FormEvent) => {
@@ -38,7 +37,7 @@ export default function SignIn() {
           setError(result.error)
         }
       } else if (!requires2FA) {
-        redirect('/auth/login')
+        router.push('/auth/login')
       }
     } catch (error) {
       setError('Terjadi kesalahan saat login')

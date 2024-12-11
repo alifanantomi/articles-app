@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { redirect, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 
@@ -47,7 +47,7 @@ export default function Register() {
         throw new Error(data.error || 'Terjadi kesalahan saat registrasi')
       }
 
-      redirect('/dashboard')
+      router.push('/auth/login')
     } catch (error) {
       setError(error instanceof Error ? error.message : 'Terjadi kesalahan')
     } finally {

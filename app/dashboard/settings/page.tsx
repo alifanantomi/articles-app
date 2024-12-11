@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 export default function TwoFactorSettings() {
   const [qrCode, setQrCode] = useState<string>('')
@@ -10,6 +10,8 @@ export default function TwoFactorSettings() {
   const [verificationCode, setVerificationCode] = useState('')
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
+
+  const router = useRouter()
 
   const setup2FA = async () => {
     try {
@@ -51,7 +53,7 @@ export default function TwoFactorSettings() {
       setSecret('')
       setVerificationCode('')
 
-      redirect('/dashboard')
+      router.push('/dashboard')
     } catch (error) {
       setError('Kode verifikasi tidak valid')
     }
