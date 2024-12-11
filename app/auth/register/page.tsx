@@ -116,7 +116,7 @@ export default function Register() {
         </button>
 
         <div className="text-center mt-4">
-          <Link href="/auth/signin" className="text-blue-500 hover:text-blue-600">
+          <Link href="/auth/login" className="text-blue-500 hover:text-blue-600">
             Sudah punya akun? Login
           </Link>
         </div>

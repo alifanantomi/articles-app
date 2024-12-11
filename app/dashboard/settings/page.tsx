@@ -34,6 +34,8 @@ export default function TwoFactorSettings() {
 
   const verify2FA = async () => {
     try {
+      setError('')
+
       const response = await fetch('/api/2fa/verify', {
         method: 'POST',
         headers: {
@@ -45,6 +47,7 @@ export default function TwoFactorSettings() {
       const data = await response.json()
 
       if (!response.ok) {
+        setError(data.error)
         throw new Error(data.error)
       }
 
