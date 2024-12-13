@@ -19,6 +19,7 @@ import { formatDistance } from "date-fns"
 import { useRouter } from "next/navigation"
 import { Category, News, PrismaClient } from "@prisma/client"
 import prisma from "@/lib/prisma"
+import Link from "next/link"
 
 async function deleteNews(id: string) {
   // "use server"
@@ -31,14 +32,14 @@ interface NewsTableProps {
     id: string
     content: string
     imageUrl: string | null
-    categoryId: string
+    categoryId: string | null
     authorId: string
     createdAt: Date
     updatedAt: Date
     category: {
       name: string
       id: string
-    }
+    } | null
   }[]
 }
 
@@ -74,7 +75,11 @@ export default function NewsTable({ news }: NewsTableProps) {
         <TableBody>
           {news.map((item) => (
             <TableRow key={item.id}>
-              <TableCell>{item.title}</TableCell>
+              <TableCell>
+                <Link className="underline" href={`/news/${item.id}`}>
+                  {item.title}
+                </Link>
+              </TableCell>
               <TableCell>
                 {formatDistance(new Date(item.createdAt), new Date(), {
                   addSuffix: true,
