@@ -29,9 +29,11 @@ export default async function DashboardPage() {
     orderBy: { createdAt: "desc" },
   })
 
+  const categories = await prisma.category.findMany()
+
   return (
     <div className="container mx-auto py-10 px-6">
-      <NewsTable news={news || []} />
+      <NewsTable news={news || []} categories={categories} />
     </div>
   )
 }

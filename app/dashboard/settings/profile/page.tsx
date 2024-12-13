@@ -1,6 +1,5 @@
 import { getSession } from '@/lib/auth'
 import Link from 'next/link'
-import LogoutButton from '@/components/logout-button'
 
 interface User {
   id: string
@@ -46,10 +45,6 @@ export default async function Dashboard() {
               </Link>
             </div>
           )}
-
-          <div className="mt-6">
-            <LogoutButton />
-          </div>
         </div>
       )}
     </div>
